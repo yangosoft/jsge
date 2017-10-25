@@ -29,7 +29,7 @@ export default class ImageNode extends NodeBase{
         this._height = img.height;
         this._loaded = true;
     }
-    draw(ctx)
+    draw(ctx,dt)
     {
         
         

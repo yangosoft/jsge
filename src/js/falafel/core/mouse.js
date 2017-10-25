@@ -62,7 +62,7 @@ export default class Mouse{
 //       canMouseY=parseInt(e.clientY-0);
 //       // if the drag flag is set, clear the canvas and draw the image
        if(this._isDragging){
-           console.log(e.pageX+","+e.pageY);
+//            console.log(e.pageX+","+e.pageY);
            this._falafel.mouseDrag(e.pageX, e.pageY);
 //           ctx.clearRect(0,0,canvasWidth,canvasHeight);
 //           ctx.drawImage(img,canMouseX-128/2,canMouseY-120/2,128,120);

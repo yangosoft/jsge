@@ -29,7 +29,8 @@ export default class NodeBase{
       
       this._alpha = 1;
       this._color = new Color();
-      
+      this._isSelectable = true;
+      this._visible = true;
       
   }
   
@@ -131,12 +132,22 @@ export default class NodeBase{
       
   }
   
-  draw(ctx)
+  move(dx,dy)
   {
+      this._position.x += dx;
+      this._position.y += dy;
+    
+  }
+  
+  draw(ctx,dt)
+  {
+      if ( this._visible === true )
+      {
        this.childs.forEach( (value) =>  {
 //           console.log( value.name + " -> " + value.id + " parent " + value.parentId + " " + this.position.x);  
-          value.draw(ctx);
+          value.draw(ctx,dt);
         });
+      }
   }
   
   getChildById(id)
@@ -146,11 +157,8 @@ export default class NodeBase{
           return this;
       }
      
-      
-      
       let v = null;
       //Cambiar esto
-      
       this.childs.forEach( (value) =>{  
           
           if ( null === v )
@@ -161,41 +169,29 @@ export default class NodeBase{
                 return;
             }
           }
-          
       });
       
       return v;
-      
   }
   
   contains(x,y,v)
   {
 //       console.log(this.name + " id " + this._id + " checking " + this._position.x+"," + this._position.y + "," + (this._position.x+this._width) +"," + (this._position.y+this._height) + " vs " + x + ", " + y);
+   
+    let found =  ( x >= this._position.x ) && ( x <= this._position.x+this._width) && ( y >= this._position.y ) && ( y <= this._position.y+this._height );
       
-      
-      
-      
-      
-     
-      
-      let found =  ( x >= this._position.x ) && ( x <= this._position.x+this._width) && ( y >= this._position.y ) && ( y <= this._position.y+this._height );
-      
-           this.childs.forEach( (value) =>{  
-                
-                value.contains(x,y,v)
-                           
-            });
-      
-      if ( false === found )
-      {
-       
+    this.childs.forEach( (value) =>{  
         
-          
-      }else
-      {
-          v.push(this);
-      }
+        value.contains(x,y,v)
+                    
+    });
       
+    if ( false === found )
+    {   
+    }else
+    {
+        v.push(this);
+    } 
   }
   
   onClick(x,y)

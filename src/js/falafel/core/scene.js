@@ -12,15 +12,16 @@ export default class Scene extends NodeBase {
       super();
     this.childs = [];
     this._typeName = "Scene";
+    this._isSelectable = false;
     
   }
   
   
-  draw(ctx)
+  draw(ctx,dt)
   {
        this.childs.forEach( (value) =>  {
 //           console.log( " ---> " + value.name + " -> " + value.id + " parent " + value.parentId );  
-          value.draw(ctx);
+          value.draw(ctx,dt);
         });
   }
   

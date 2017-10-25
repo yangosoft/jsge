@@ -86,16 +86,55 @@ module.exports = {
         j.width = 200;
         j.height = 400;
         j.color = new F.Color(255,255,0,1);
-        
-        
-        
         s.addChild(j);
+        
+        let l = new F.Rectangle();
+        
+        l.name = "blue";
+        p = new F.Point(40,40);
+        console.log("p " +  JSON.stringify(p));
+        l.position = p;
+        l.width = 100;
+        l.height = 40;
+        l.color = new F.Color(0,255,255,1);
+        i.addChild(l);
+        
+        
+        
+        
+      
+        
+        
+        
+        
         
         falafel.addChild(s);
         
         
+        //Escena 2
+        
+        var s2 = new F.Scene();
+        s2.width = 1280;
+        s2.height = 720;
+        s2.name = "Escena 2";
+        
+        k = new F.ImageNode();
+        k.setImage("https://static.comicvine.com/uploads/original/0/40/2486696-batman_the_dark_knight_rises_the_dark_knight_rises_30411051_967_1450.jpeg");
+        k.name = "img";
+        q = new F.Point(50,50);
+        k.position = q;
+        s2.addChild(k);
+        falafel.addChild(s2);
+        //
+        
+        
+        //falafel._nEditor.describeScene(falafel);
+        
+        falafel.runScene(s2._name);
+        
+        
      
-        requestAnimationFrame(()=>{falafel.run()});
+        requestAnimationFrame((dt)=>{falafel.run(dt)});
         
         //falafel.run();
         

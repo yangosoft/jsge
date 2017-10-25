@@ -6,25 +6,35 @@ import Scene from "./core/scene.js";
 import Color from "./core/color.js";
 import UUID from "./core/uuid.js";
 import Mouse from "./core/mouse.js";
+import Editor from "./editor/editor.js";
+import Director from "./director/director.js";
 
 
 let instance = null;
 
 class Falafel extends NodeBase
 {
-    constructor(ctx){
-        if(!instance){
+    constructor(ctx) {
+        if(!instance) {
             super();
-        this.ctx = ctx;
-        this.childs = [];
-        this._running = true;
-        this._mouse = new Mouse(this); 
-              instance = this;
+            this.ctx = ctx;
+            this.childs = [];
+            this._running = true;
+            this._mouse = new Mouse(this); 
+            this._director = new Director(this);
+                
+            this._nEditor = new Editor(this);
+            
+            instance = this;
         }
         
         
         this._nDraggable = null;
         this._nOffset = new Point();
+        
+        
+        
+        
         
         return instance;
     }
@@ -34,19 +44,50 @@ class Falafel extends NodeBase
         return instance;
     }
     
+    
+    
+    
+
+    
+    
+    
     click(x,y)
     {
         this._running = false;
+        
+        
+        
         let e = this.getChildByCoordinate(x,y);
-        if ( null !== e )
+        
+        
+        if (( null !== e ) && ( e._isSelectable === true))
         {
-            e.onClick(x,y);  
+            if ( e == this._nDraggable )
+            {
+                this._nDraggable.alpha = 1;
+                this._nDraggable = null;
+                this._nEditor.updatePanel(null);
+                this._running = true;
+                return;
+            }
+            
+            e.onClick(x,y);
+            
+            
             this._nOffset.x = e.position.x - x;
+            
             this._nOffset.y = e.position.y - y;
+            
+                     
+            
+            
+            
             this._nDraggable = e;
+            
+            
             this._nDraggable.alpha = 0.75;
-            var panel = document.getElementById("rigthpanel");
-            panel.innerHTML = e.name;
+            this._nEditor.updatePanel(e);
+            
         }
         this._running = true;
         
@@ -54,11 +95,11 @@ class Falafel extends NodeBase
     
     mouseUp(x,y)
     {
-        if (null !== this._nDraggable)
+        /*if (null !== this._nDraggable)
         {
             this._nDraggable.alpha = 1;
             this._nDraggable = null;
-        }
+        }*/
     }
     
     
@@ -68,9 +109,20 @@ class Falafel extends NodeBase
         
         if ( this._nDraggable !== null )
         {
+            var dx = this._nDraggable.position.x;
+            var dy = this._nDraggable.position.y;
+            
            this._nDraggable.position.x = this._nOffset.x + x;
            this._nDraggable.position.y = this._nOffset.y +y;
-            
+           dx = this._nDraggable.position.x -dx;
+           dy = this._nDraggable.position.y -dy;
+           
+           this._nDraggable.childs.forEach( (c) => { c.move(dx,dy); } );
+           
+           
+           
+           this._nEditor.updatePanel(this._nDraggable);
+          
         }
         this._running = true;
         
@@ -93,7 +145,7 @@ class Falafel extends NodeBase
     {
         
         let vNodes = [];
-        this.childs.forEach( (value) =>  {
+        this._director._currentScene.childs.forEach( (value) =>  {
             value.contains(x,y,vNodes);    
         });
         
@@ -110,33 +162,37 @@ class Falafel extends NodeBase
             
         });
         return e;
-        
-        
     }
     
     
-    run()
+    run(dt)
     {
-        
+        //console.log(dt);
         if ( this._running )
         {   
             this.ctx.clearRect(0, 0, 1280, 720);
+            this._director.run(dt);
             
             
-            this.childs.forEach( (value) =>  {
-            //console.log( "    " + value.name + " -> " + value.id + " parent " + value.parentId );  
-            value.draw(this.ctx);
-            });
+            
+            
+            this._nEditor.drawGuides(this._nDraggable);
         }
         
-        requestAnimationFrame(()=>{this.run()});
-        
-        
-//         this.ctx.fillStyle = 'rgb(200, 0, 0)';
-//         this.ctx.fillRect(10, 10, 50, 50);
-// 
-//         this.ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
-//         this.ctx.fillRect(30, 30, 50, 50);
+        requestAnimationFrame((dt)=>{this.run(dt)});
+    }
+    
+    addChild(scene)
+    {
+      scene.parentId = this.id;
+      //this.childs.push(scene); 
+      this._director.addScene(scene);
+    }
+    
+    runScene(name)
+    {
+        console.log("Trying to run " + name);
+        this._director.runScene(name);
     }
     
 
@@ -151,5 +207,7 @@ module.exports = {
     Point: Point,
     Color: Color,
     UUID: UUID,
-    Mouse: Mouse
+    Mouse: Mouse,
+    Director: Director
+    
 }

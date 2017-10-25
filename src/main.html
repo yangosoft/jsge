@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>JSGE editor</title>
+  <title>JSGE</title>
 <!--   <link rel="stylesheet" href="js/jquery-ui-1.12.1.custom/jquery-ui.css"> -->
 
-  
+
   <style>
   #draggable { width: 150px; height: 150px; padding: 0.5em; color:blue}
   body {
@@ -17,22 +17,22 @@
     width: 350px;
     height: 100%;
     position: absolute;
-    right: 0; 
+    right: 0;
     top: 0;
-    background-color: gray;
-    
-    
+    background-color: #eeeeee;
+
+
   }
-  
+
   </style>
   <!--<script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>-->
-  
-  
-   <script src="main.bundle.js"></script> 
-  
-  
-  
+
+
+   <script src="main.bundle.js"></script>
+
+
+
   <script>
 //   function load()
 //     {
@@ -43,7 +43,7 @@ window.onload = function () {
     Falafel.load();
     Falafel.setCanvas("tutorial");
   };
-  
+
   </script>
 </head>
 <body>
@@ -51,13 +51,44 @@ window.onload = function () {
  <canvas id="tutorial" width="1280" height="720"></canvas>
  </div>
  <div id="rigthpanel">
- 
+    <div id="elementTitle">Name: <input type="text" id="propname"/></div>
+    <div id="elementProperties">
+        <table style="width:100%">
+  <tr>
+    <th>Propertie</th>
+    <th>Value</th>
+
+  </tr>
+  <tr>
+    <td>x</td>
+    <td><input type="numeric" id="propx"/></td>
+  </tr>
+  <tr>
+    <td>y</td>
+    <td><input type="numeric" id="propy"/></td>
+  </tr>
+  <tr>
+    <td>h</td>
+    <td><input type="numeric" id="proph"/></td>
+  </tr>
+  <tr>
+    <td>w</td>
+    <td><input type="numeric" id="propw"/></td>
+  </tr>
+</table>
+
+    </div>
+
+    <div id="treeView">
+    <pre>
+    </pre>
+    </div>
  </div>
- 
+
 <div id="draggable" class="ui-widget-content">
   <p>Drag me around</p>
 </div>
- 
- 
+
+
 </body>
 </html>
