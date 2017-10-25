@@ -34,7 +34,7 @@ jobs:
           key: v1-dependencies-{{ checksum "src/package.json" }}
         
       # run tests!
-      - run: cd src ; xvfb-run npm run test
+      - run: cd src ; npm run test
 
 
 
