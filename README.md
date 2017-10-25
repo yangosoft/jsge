@@ -1,6 +1,6 @@
 # JSGE 
 Javascript HTML5 Game Engine
 
-[!alt Circle CI](https://circleci.com/gh/:owner/:repo.svg?style=shield&circle-token=:circle-token)
+[![CircleCI](https://circleci.com/gh/yangosoft/jsge.svg?style=svg)](https://circleci.com/gh/yangosoft/jsge)
 
 Very simple javascript game engine.
