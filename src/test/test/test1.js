@@ -12,5 +12,8 @@ describe("hexColorLuminance", function () {
   it("should change the background of an element", function () {
     return 0;
   });
+   it("should pass", function () {
+    return 0;
+  });
 
 });
