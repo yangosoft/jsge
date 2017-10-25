@@ -1,4 +1,7 @@
 var webpack = require("webpack");
+process.env.CHROME_BIN = require('puppeteer').executablePath();
+require('puppeteer');
+
 module.exports = function(config) {
   config.set({
 
@@ -53,9 +56,10 @@ module.exports = function(config) {
       require("karma-mocha"),
       require("karma-coverage"),
       require("karma-phantomjs-launcher"),
-      require("karma-spec-reporter")
+      require("karma-spec-reporter"),
+      require("karma-chrome-launcher")
     ],
 
-    browsers: ['PhantomJS']
+    browsers: ['ChromeHeadless']
   });
 };
