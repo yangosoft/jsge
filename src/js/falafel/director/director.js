@@ -48,7 +48,7 @@ export default class Director{
           {
               this._currentScene.childs.forEach( (value) =>  {
             
-                value.draw(this._falafel.ctx,dt);
+                value.draw(dt);
               });
           }
       }

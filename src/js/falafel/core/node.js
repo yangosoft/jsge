@@ -5,6 +5,8 @@ import Color from "./color.js";
 
 import UUID from "./uuid.js";
 
+
+
 export default class NodeBase{
     
   
@@ -32,6 +34,7 @@ export default class NodeBase{
       this._isSelectable = true;
       this._visible = true;
       
+     
   }
   
   
@@ -139,13 +142,13 @@ export default class NodeBase{
     
   }
   
-  draw(ctx,dt)
+  draw(dt)
   {
       if ( this._visible === true )
       {
        this.childs.forEach( (value) =>  {
 //           console.log( value.name + " -> " + value.id + " parent " + value.parentId + " " + this.position.x);  
-          value.draw(ctx,dt);
+          value.draw(dt);
         });
       }
   }

@@ -17,11 +17,11 @@ export default class Scene extends NodeBase {
   }
   
   
-  draw(ctx,dt)
+  draw(dt)
   {
        this.childs.forEach( (value) =>  {
 //           console.log( " ---> " + value.name + " -> " + value.id + " parent " + value.parentId );  
-          value.draw(ctx,dt);
+          value.draw(dt);
         });
   }
   

@@ -3,36 +3,69 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>JSGE</title>
+  <title>DSPLAY editor</title>
 <!--   <link rel="stylesheet" href="js/jquery-ui-1.12.1.custom/jquery-ui.css"> -->
 
-
+<!--   <link rel="stylesheet" href="css/acidjs-treeview.css"> -->
+  
   <style>
   #draggable { width: 150px; height: 150px; padding: 0.5em; color:blue}
   body {
     margin: 0;
+    font-family: Arial;
   }
   #rigthpanel
   {
     width: 350px;
-    height: 100%;
+/*     height: 100%; */
     position: absolute;
-    right: 0;
+    right: 0; 
     top: 0;
-    background-color: #eeeeee;
-
-
+    background-color: #eeeeee; 
   }
-
+  
+  #rigthpanelTitle
+  {
+    
+    height: 20px;
+    
+    
+    background-color: #0044ff; 
+    color: white;
+    margin-bottom: 10px;
+    
+    vertical-align: middle;
+   font-weight: bold;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #0099FF;
+    
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+  }
+  
+  .panel 
+  {
+   padding: 5px;
+   background-color: #cccccc;
+  }
+  
+  canvas
+  {
+    border: solid;
+    border-width: 1px;
+  }
+  
   </style>
   <!--<script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>-->
-
-
-   <script src="main.bundle.js"></script>
-
-
-
+  
+  
+   <script src="main.bundle.js"></script> 
+  
+  
+  
   <script>
 //   function load()
 //     {
@@ -43,52 +76,166 @@ window.onload = function () {
     Falafel.load();
     Falafel.setCanvas("tutorial");
   };
-
+  
   </script>
 </head>
 <body>
- <div>
+ <div style="display:flex;align-items:center;">
+
  <canvas id="tutorial" width="1280" height="720"></canvas>
- </div>
+
  <div id="rigthpanel">
+    <div id="rigthpanelTitle">Toolbox</div>
+    <div class="panel">
     <div id="elementTitle">Name: <input type="text" id="propname"/></div>
     <div id="elementProperties">
         <table style="width:100%">
   <tr>
-    <th>Propertie</th>
-    <th>Value</th>
-
+    <th>Properties</th>
+    <th>Values</th> 
+    
   </tr>
   <tr>
     <td>x</td>
-    <td><input type="numeric" id="propx"/></td>
+    <td><input type="numeric" id="propx"/></td> 
   </tr>
   <tr>
     <td>y</td>
-    <td><input type="numeric" id="propy"/></td>
+    <td><input type="numeric" id="propy"/></td> 
   </tr>
   <tr>
     <td>h</td>
-    <td><input type="numeric" id="proph"/></td>
+    <td><input type="numeric" id="proph"/></td> 
   </tr>
   <tr>
     <td>w</td>
-    <td><input type="numeric" id="propw"/></td>
+    <td><input type="numeric" id="propw"/></td> 
   </tr>
 </table>
-
+    
     </div>
-
+    </div>
+    
     <div id="treeView">
     <pre>
     </pre>
     </div>
- </div>
+    
+    <div class="panel">
+    <!--
+    <div class="css-treeview">
+    <ul>
+        <li><input type="checkbox" id="item-0" /><label for="item-0">This Folder is Closed By Default</label>
+            <ul>
+                <li><input type="checkbox" id="item-0-0" /><label for="item-0-0">Ooops! A Nested Folder</label>
+                    <ul>
+                        <li><input type="checkbox" id="item-0-0-0" /><label for="item-0-0-0">Look Ma - No Hands!</label>
+                            <ul>
+                                <li><a href="./">First Nested Item</a></li>
+                                <li><a href="./">Second Nested Item</a></li>
+                                <li><a href="./">Third Nested Item</a></li>
+                                <li><a href="./">Fourth Nested Item</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="./">Item 1</a></li>
+                        <li><a href="./">Item 2</a></li>
+                        <li><a href="./">Item 3</a></li>
+                    </ul>
+                </li>
+                <li><input type="checkbox" id="item-0-1" /><label for="item-0-1">Yet Another One</label>
+                    <ul>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                    </ul>
+                </li>
+                <li><input type="checkbox" id="item-0-2" disabled="disabled" /><label for="item-0-2">Disabled Nested Items</label>
+                    <ul>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                    </ul>
+                </li>
+                <li><a href="./">item</a></li>
+                <li><a href="./">item</a></li>
+                <li><a href="./">item</a></li>
+                <li><a href="./">item</a></li>
+        </ul>
+</li>
+<li><input type="checkbox" id="item-1" checked="checked" /><label for="item-1">This One is Open by Default...</label>
+        <ul>
+            <li><input type="checkbox" id="item-1-0" /><label for="item-1-0">And Contains More Nested Items...</label>
+                <ul>
+                    <li><a href="./">Look Ma - No Hands</a></li>
+                    <li><a href="./">Another Item</a></li>
+                    <li><a href="./">And Yet Another</a></li>
+                </ul>
+            </li>
+            <li><a href="./">Lorem</a></li>
+            <li><a href="./">Ipsum</a></li>
+            <li><a href="./">Dolor</a></li>
+            <li><a href="./">Sit Amet</a></li>
+        </ul>
+</li>
+<li><input type="checkbox" id="item-2" /><label for="item-2">Can You Believe...</label>
+        <ul>
+                <li><input type="checkbox" id="item-2-0" /><label for="item-2-0">That This Treeview...</label>
+                    <ul>
+                        <li><input type="checkbox" id="item-2-2-0" /><label for="item-2-2-0">Does Not Use Any JavaScript...</label>
+                            <ul>
+                                <li><a href="./">But Relies Only</a></li>
+                                <li><a href="./">On the Power</a></li>
+                                <li><a href="./">Of CSS3</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="./">Item 1</a></li>
+                        <li><a href="./">Item 2</a></li>
+                        <li><a href="./">Item 3</a></li>
+                    </ul>
+                </li>
+                <li><input type="checkbox" id="item-2-1" /><label for="item-2-1">This is a Folder With...</label>
+                    <ul>
+                        <li><a href="./">Some Nested Items...</a></li>
+                        <li><a href="./">Some Nested Items...</a></li>
+                        <li><a href="./">Some Nested Items...</a></li>
+                        <li><a href="./">Some Nested Items...</a></li>
+                        <li><a href="./">Some Nested Items...</a></li>
+                    </ul>
+                </li>
+                <li><input type="checkbox" id="item-2-2" disabled="disabled" /><label for="item-2-2">Disabled Nested Items</label>
+                    <ul>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
 
+    --></div>
+    </div>
+ </div>
+ 
 <div id="draggable" class="ui-widget-content">
   <p>Drag me around</p>
 </div>
-
-
+  </div>
+ 
 </body>
 </html>

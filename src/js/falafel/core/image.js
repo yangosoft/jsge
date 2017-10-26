@@ -1,4 +1,5 @@
 import NodeBase from "./node.js";
+import ContextManager from "../context/contextmng.js";
 
 export default class ImageNode extends NodeBase{
  
@@ -15,6 +16,9 @@ export default class ImageNode extends NodeBase{
         }
         this._typeName = "Image";
         this._loaded = false;
+        this.contextMng =new ContextManager();
+        this._ctx = this.contextMng.context;
+        console.log("************************** " + this._ctx);
     }
     
     setImage(url)
@@ -29,7 +33,7 @@ export default class ImageNode extends NodeBase{
         this._height = img.height;
         this._loaded = true;
     }
-    draw(ctx,dt)
+    draw(dt)
     {
         
         
@@ -37,7 +41,7 @@ export default class ImageNode extends NodeBase{
 //         console.log(this._position.x, this._position.y, this._width, this._height);
         if ( this._loaded === true )
         {
-          ctx.drawImage(this._dataImage, this.position.x, this.position.y);  
+          this._ctx.drawImage(this._dataImage, this.position.x, this.position.y);  
         }
         
       

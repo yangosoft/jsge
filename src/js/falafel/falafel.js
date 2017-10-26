@@ -8,6 +8,7 @@ import UUID from "./core/uuid.js";
 import Mouse from "./core/mouse.js";
 import Editor from "./editor/editor.js";
 import Director from "./director/director.js";
+import ContextManager from "./context/contextmng.js";
 
 
 let instance = null;
@@ -24,6 +25,7 @@ class Falafel extends NodeBase
             this._director = new Director(this);
                 
             this._nEditor = new Editor(this);
+            this._contextMng = new ContextManager(this,ctx);
             
             instance = this;
         }
@@ -45,12 +47,7 @@ class Falafel extends NodeBase
     }
     
     
-    
-    
 
-    
-    
-    
     click(x,y)
     {
         this._running = false;
@@ -173,9 +170,6 @@ class Falafel extends NodeBase
             this.ctx.clearRect(0, 0, 1280, 720);
             this._director.run(dt);
             
-            
-            
-            
             this._nEditor.drawGuides(this._nDraggable);
         }
         
@@ -208,6 +202,7 @@ module.exports = {
     Color: Color,
     UUID: UUID,
     Mouse: Mouse,
-    Director: Director
+    Director: Director,
+    ContextManager: ContextManager
     
 }
