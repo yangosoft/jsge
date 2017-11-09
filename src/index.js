@@ -127,6 +127,13 @@ module.exports = {
         falafel.addChild(s2);
         //
         
+        let t = new F.Label();
+        p = new F.Point(300,200);
+        t.position = p;
+        t.text = "HELLO WORLD";
+        t.font = "100px Arial";
+        t.fillStyle = "yellow";
+        s2.addChild(t);
         
         //falafel._nEditor.describeScene(falafel);
         

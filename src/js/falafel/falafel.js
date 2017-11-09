@@ -4,6 +4,7 @@ import ImageNode from "./core/image.js";
 import Rectangle from "./core/rectangle.js";
 import Scene from "./core/scene.js";
 import Color from "./core/color.js";
+import Label from "./core/label.js";
 import UUID from "./core/uuid.js";
 import Mouse from "./core/mouse.js";
 import Editor from "./editor/editor.js";
@@ -200,6 +201,7 @@ module.exports = {
     Rectangle: Rectangle,
     Point: Point,
     Color: Color,
+    Label: Label,
     UUID: UUID,
     Mouse: Mouse,
     Director: Director,
