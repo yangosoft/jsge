@@ -193,18 +193,20 @@ class Falafel extends NodeBase
 
 };
 
-module.exports = {
-    Falafel: Falafel,
-    Scene: Scene,
-    NodeBase: NodeBase,
-    ImageNode: ImageNode,
-    Rectangle: Rectangle,
-    Point: Point,
-    Color: Color,
-    Label: Label,
-    UUID: UUID,
-    Mouse: Mouse,
-    Director: Director,
-    ContextManager: ContextManager
-    
-}
+export { Falafel, Scene, NodeBase, ImageNode, Rectangle, Point, Color, Label, UUID, Mouse, Director, ContextManager }
+
+
+// module.exports = {
+//     Falafel: Falafel,
+//     Scene: Scene,
+//     NodeBase: NodeBase,
+//     ImageNode: ImageNode,
+//     Rectangle: Rectangle,
+//     Point: Point,
+//     Color: Color,
+//     Label: Label,
+//     UUID: UUID,
+//     Mouse: Mouse,
+//     Director: Director,
+//     ContextManager: ContextManager
+// }
