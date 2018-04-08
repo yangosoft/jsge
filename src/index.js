@@ -22,11 +22,8 @@ let n = new F.NodeBase();
 
 module.exports = {
   load: function() {
-
     $("#draggable").draggable();
     $("#rigthpanel").draggable();
-
-
   },
   setCanvas: function(idCanvas) {
     var canvas = document.getElementById(idCanvas);
@@ -56,7 +53,7 @@ module.exports = {
 
 
     let k = new F.ImageNode();
-    k.setImage("https://static.comicvine.com/uploads/original/0/40/2486696-batman_the_dark_knight_rises_the_dark_knight_rises_30411051_967_1450.jpeg");
+    k.setImage("https://apod.nasa.gov/apod/image/1804/ngc6960_Pugh_960.jpg");
     k.name = "img";
     let q = new F.Point(50, 50);
     k.position = q;
@@ -109,7 +106,7 @@ module.exports = {
     s2.name = "Escena 2";
 
     k = new F.ImageNode();
-    k.setImage("https://static.comicvine.com/uploads/original/0/40/2486696-batman_the_dark_knight_rises_the_dark_knight_rises_30411051_967_1450.jpeg");
+    k.setImage("https://apod.nasa.gov/apod/image/1804/ngc6960_Pugh_960.jpg");
     k.name = "img";
     q = new F.Point(50, 50);
     k.position = q;
