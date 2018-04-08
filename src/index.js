@@ -13,12 +13,26 @@ import 'jquery-ui/ui/widgets/draggable';
 
 
 import * as F from "./js/falafel/falafel";
-
+import MyRectangle from './myrectangle.js' ;
 
 let falafel = null;
 
 let n = new F.NodeBase();
 
+
+
+//Create custom rectangle class overriding
+//draw method
+/*class MyRectangle extends F.Rectangle {
+  draw(dt) {
+    super.draw(dt);
+
+    if (this._position.x < 750) {
+      this._position.x = this._position.x + Math.round(dt / 1000);
+      this.alpha = this.alpha - 0.001;
+    }
+  }
+}*/
 
 module.exports = {
   load: function() {
@@ -85,7 +99,10 @@ module.exports = {
     j.color = new F.Color(255, 255, 0, 1);
     s.addChild(j);
 
-    let l = new F.Rectangle();
+
+
+
+    let l = new MyRectangle();
 
     l.name = "blue";
     p = new F.Point(40, 40);
