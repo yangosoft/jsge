@@ -33,7 +33,7 @@ export default class NodeBase{
       this._color = new Color();
       this._isSelectable = true;
       this._visible = true;
-      
+      this._callBackDraw = null;
      
   }
   
@@ -47,6 +47,12 @@ export default class NodeBase{
   {
        this._parentId = id;
   }
+  
+  set callBackDraw(callback)
+  {
+      this._callBackDraw = callback;
+  }
+  
   
   get id()
   {
@@ -150,6 +156,10 @@ export default class NodeBase{
 //           console.log( value.name + " -> " + value.id + " parent " + value.parentId + " " + this.position.x);  
           value.draw(dt);
         });
+        if(this._callBackDraw !== null)
+        {
+                this._callBackDraw(this,dt);
+        }
       }
   }
   

@@ -2,6 +2,7 @@ import NodeBase from "./core/node.js";
 import Point from "./core/types.js";
 import ImageNode from "./core/image.js";
 import Rectangle from "./core/rectangle.js";
+import Circle from "./core/circle.js";
 import Scene from "./core/scene.js";
 import Color from "./core/color.js";
 import Label from "./core/label.js";
@@ -24,10 +25,9 @@ class Falafel extends NodeBase
             this._running = true;
             this._mouse = new Mouse(this); 
             this._director = new Director(this);
-                
             this._nEditor = new Editor(this);
             this._contextMng = new ContextManager(this,ctx);
-            
+            this._oldDt = 0;
             instance = this;
         }
         
@@ -70,25 +70,13 @@ class Falafel extends NodeBase
             }
             
             e.onClick(x,y);
-            
-            
             this._nOffset.x = e.position.x - x;
-            
             this._nOffset.y = e.position.y - y;
-            
-                     
-            
-            
-            
             this._nDraggable = e;
-            
-            
             this._nDraggable.alpha = 0.75;
             this._nEditor.updatePanel(e);
-            
         }
-        this._running = true;
-        
+        this._running = true;   
     }
     
     mouseUp(x,y)
@@ -165,14 +153,16 @@ class Falafel extends NodeBase
     
     run(dt)
     {
+        let d = dt - this._oldDt;
         //console.log(dt);
         if ( this._running )
         {   
             this.ctx.clearRect(0, 0, 1280, 720);
-            this._director.run(dt);
+            this._director.run(d);
             
             this._nEditor.drawGuides(this._nDraggable);
         }
+        this._oldDt = dt;
         
         requestAnimationFrame((dt)=>{this.run(dt)});
     }
@@ -193,7 +183,7 @@ class Falafel extends NodeBase
 
 };
 
-export { Falafel, Scene, NodeBase, ImageNode, Rectangle, Point, Color, Label, UUID, Mouse, Director, ContextManager }
+export { Falafel, Scene, NodeBase, ImageNode, Circle, Rectangle, Point, Color, Label, UUID, Mouse, Director, ContextManager }
 
 
 // module.exports = {
